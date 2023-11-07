@@ -48,7 +48,8 @@ with tab1:
     
     with right_col_v:
         html_temp = """<script type='module' src='https://prod-useast-b.online.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js'></script><tableau-viz id='tableau-viz' src='https://prod-useast-b.online.tableau.com/t/nlpdataset/views/Kuwait/Sheet1' width='1470' height='689' hide-tabs toolbar='bottom' ></tableau-viz>"""
-        components.html(html_temp, width=500, height=500)
+        components.iframe(src=html_temp,width=1470, height=689 )
+        # components.html(html_temp, width=1470, height=689)
 
 
 with tab2:
