@@ -30,8 +30,8 @@ header_right, header_left = st.columns((2,1))
 with header_right:
     st.title("Summarization Dataset")
 
-with header_left:
-    st_lottie(lottie_coding, height=150 ,key="coding")
+# with header_left:
+#     st_lottie(lottie_coding, height=150 ,key="coding")
 
 tab1, tab2 = st.tabs(["VISUALIZATION","DOWNLOAD"]);
 
