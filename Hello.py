@@ -1,7 +1,7 @@
 
 import streamlit as st
 import requests
-from streamlit_lottie import st_lottie
+
 import smtplib
 from email.mime.text import MIMEText
 import streamlit.components.v1 as components
@@ -14,15 +14,15 @@ st.set_page_config(
 )
 
 
-def load_lottie_url(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+# def load_lottie_url(url):
+#     r = requests.get(url)
+#     if r.status_code != 200:
+#         return None
+#     return r.json()
 
-#----------LOAD ASSETs-------------------
+# #----------LOAD ASSETs-------------------
 
-lottie_coding = load_lottie_url("https://lottie.host/89678da3-dcf7-40d9-842f-e7ea0086f77a/JwH2v6MU1d.json")
+# lottie_coding = load_lottie_url("https://lottie.host/89678da3-dcf7-40d9-842f-e7ea0086f77a/JwH2v6MU1d.json")
 
 #----------HEADER-SECTION----------------
 header_right, header_left = st.columns((2,1))
