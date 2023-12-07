@@ -7,6 +7,9 @@ from streamlit_folium import st_folium
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import pathlib
+
+code_dir = pathlib.Path(__file__).parent.resolve()
 
 # Constants
 countries = ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Libya", "Morocco", "Mauritania", "Oman",
@@ -52,7 +55,7 @@ def create_point_map(df):
 def plot_from_df(df, folium_map):
     df = create_point_map(df)
     for _, row in df.iterrows():
-        icon = folium.features.CustomIcon('/workspaces/nlpdataset/marker.png', icon_size=(14, 14,))
+        icon = folium.features.CustomIcon(f"{code_dir}/workspaces/nlpdataset/marker.png", icon_size=(14, 14,))
         marker = folium.Marker([row.Latitude, row.Longitude],
                               tooltip=f'{row.ID}',
                               opacity=row.Opacity,
