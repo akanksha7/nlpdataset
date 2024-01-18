@@ -34,11 +34,16 @@ def load_df():
     return df
 
 
+# # Initialize the map
+# @st.cache_resource
+# def init_map(center=(23.78, 40.61), zoom_start=3, map_type="Cartodb dark_matter"):
+#     return folium.Map(location=center, zoom_start=zoom_start, tiles=map_type)
+
 # Initialize the map
 @st.cache_resource
 def init_map(center=(23.78, 40.61), zoom_start=3, map_type="Cartodb dark_matter"):
-    return folium.Map(location=center, zoom_start=zoom_start, tiles=map_type)
-
+    m = folium.Map(location=center, zoom_start=zoom_start, tiles=map_type)
+    return m
 
 # Create a GeoDataFrame from the given DataFrame
 @st.cache_resource
@@ -49,26 +54,12 @@ def create_point_map(df):
     df = df.dropna(subset=['Latitude', 'Longitude', 'coordinates'])
     return df
 
-
 # Plot markers on the map
-
-# def plot_from_df(df, folium_map):
-#     df = create_point_map(df)
-#     marker_path = code_dir / "workspaces" / "nlpdataset" / "marker.png"
-#     for _, row in df.iterrows():
-#         icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
-#         marker = folium.Marker([row.Latitude, row.Longitude],
-#                               tooltip=f'{row.ID}',
-#                               opacity=row.Opacity,
-#                               icon=icon)
-
-#         marker.add_to(folium_map)
-#     return folium_map
 def plot_from_df(df, folium_map):
     df = create_point_map(df)
-    marker_path = str(code_dir / "marker.png")  # Convert PosixPath to string
+    marker_path = str(code_dir / "marker.png")
     for _, row in df.iterrows():
-        icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
+        icon = folium.CustomIcon(marker_path, icon_size=(14, 14,))
         marker = folium.Marker([row.Latitude, row.Longitude],
                               tooltip=f'{row.ID}',
                               opacity=row.Opacity,
@@ -77,7 +68,19 @@ def plot_from_df(df, folium_map):
     return folium_map
 
 
-# Load the initial map
+# def plot_from_df(df, folium_map):
+#     df = create_point_map(df)
+#     marker_path = str(code_dir / "marker.png")  # Convert PosixPath to string
+#     for _, row in df.iterrows():
+#         icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
+#         marker = folium.Marker([row.Latitude, row.Longitude],
+#                               tooltip=f'{row.ID}',
+#                               opacity=row.Opacity,
+#                               icon=icon)
+#         marker.add_to(folium_map)
+#     return folium_map
+
+
 @st.cache_resource
 def load_map():
     m = init_map()
@@ -90,7 +93,6 @@ def load_map():
 @st.cache_resource
 def load_country_data(country):
     file_path = str(code_dir / "datasets" / f"{country.lower()}.csv")
-    # file_path = f'/workspaces/nlpdataset/datasets/{country.lower()}.csv'
     data = pd.read_csv(file_path, nrows= 20000)
     return data
  
@@ -107,14 +109,14 @@ def main():
 
     # Visualization and Download tabs
     tab1, tab2 = st.tabs(["VISUALIZATION", "DOWNLOAD"])
-
     # VISUALIZATION tab
     with tab1:
         left_col_v, right_col_v = st.columns((1, 2), gap="large")
-        with left_col_v:
-            
-            m = load_map()
-            level1_map_data = st_folium(m, height=1000, width=600)
+        with left_col_v:   
+            # m = load_map()
+            # level1_map_data = st_folium(m, height=1000, width=600)
+            m = load_map()      
+            level1_map_data = st_folium(m, height=400, width=600)
 
         with right_col_v:
             country_data = None
