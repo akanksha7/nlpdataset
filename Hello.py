@@ -52,16 +52,27 @@ def create_point_map(df):
 
 # Plot markers on the map
 
+# def plot_from_df(df, folium_map):
+#     df = create_point_map(df)
+#     marker_path = code_dir / "workspaces" / "nlpdataset" / "marker.png"
+#     for _, row in df.iterrows():
+#         icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
+#         marker = folium.Marker([row.Latitude, row.Longitude],
+#                               tooltip=f'{row.ID}',
+#                               opacity=row.Opacity,
+#                               icon=icon)
+
+#         marker.add_to(folium_map)
+#     return folium_map
 def plot_from_df(df, folium_map):
     df = create_point_map(df)
-    marker_path = code_dir / "workspaces" / "nlpdataset" / "marker.png"
+    marker_path = str(code_dir  / "marker.png")  # Convert PosixPath to string
     for _, row in df.iterrows():
         icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
         marker = folium.Marker([row.Latitude, row.Longitude],
                               tooltip=f'{row.ID}',
                               opacity=row.Opacity,
                               icon=icon)
-
         marker.add_to(folium_map)
     return folium_map
 
@@ -79,12 +90,9 @@ def load_map():
 @st.cache_resource
 def load_country_data(country):
     file_path = f'/workspaces/nlpdataset/datasets/{country.lower()}.csv'
-    data = pd.read_csv(file_path)
+    data = pd.read_csv(file_path, nrows= 20000)
     return data
-
-
-            
-    
+ 
 
 # Main function
 def main():
@@ -103,8 +111,7 @@ def main():
     with tab1:
         left_col_v, right_col_v = st.columns((1, 2), gap="large")
         with left_col_v:
-            # Load the initial m
-            # ap
+            
             m = load_map()
             level1_map_data = st_folium(m, height=400, width=600)
 
