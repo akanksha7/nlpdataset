@@ -66,7 +66,7 @@ def create_point_map(df):
 #     return folium_map
 def plot_from_df(df, folium_map):
     df = create_point_map(df)
-    marker_path = str(code_dir / "workspaces" / "nlpdataset" / "marker.png")  # Convert PosixPath to string
+    marker_path = str(code_dir / "marker.png")  # Convert PosixPath to string
     for _, row in df.iterrows():
         icon = folium.features.CustomIcon(marker_path, icon_size=(14, 14,))
         marker = folium.Marker([row.Latitude, row.Longitude],
