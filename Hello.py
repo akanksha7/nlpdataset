@@ -89,7 +89,8 @@ def load_map():
 # Load country-specific data
 @st.cache_resource
 def load_country_data(country):
-    file_path = f'/workspaces/nlpdataset/datasets/{country.lower()}.csv'
+    file_path = str(code_dir / "datasets" / f"{country.lower()}.csv")
+    # file_path = f'/workspaces/nlpdataset/datasets/{country.lower()}.csv'
     data = pd.read_csv(file_path, nrows= 20000)
     return data
  
