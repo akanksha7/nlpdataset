@@ -114,7 +114,7 @@ def main():
         with left_col_v:
             
             m = load_map()
-            level1_map_data = st_folium(m, height=400, width=600)
+            level1_map_data = st_folium(m, height=1000, width=600)
 
         with right_col_v:
             country_data = None
