@@ -103,10 +103,16 @@ def load_country_data(country):
 def main():
     # Set page configuration
     st.set_page_config(layout='wide')
-
+    hide_footer_style = """
+    <style>
+    .reportview-container .main footer {visibility: hidden;}   
+    .reportview-container .main header {visibility: hidden;}   
+    """
+    st.markdown(hide_footer_style, unsafe_allow_html=True)
     hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
+               
             footer {visibility: hidden;}
             </style>
             """
