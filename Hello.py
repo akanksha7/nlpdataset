@@ -18,7 +18,7 @@ countries = ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Libya",
 
 
 # Load the main dataset
-@st.cache_resource
+# @st.cache_resource
 def load_df():
     data = {
         'ID': countries,
@@ -40,13 +40,13 @@ def load_df():
 #     return folium.Map(location=center, zoom_start=zoom_start, tiles=map_type)
 
 # Initialize the map
-@st.cache_resource
+# @st.cache_resource
 def init_map(center=(23.78, 40.61), zoom_start=3, map_type="Cartodb dark_matter"):
     m = folium.Map(location=center, zoom_start=zoom_start, tiles=map_type)
     return m
 
 # Create a GeoDataFrame from the given DataFrame
-@st.cache_resource
+# @st.cache_resource
 def create_point_map(df):
     df[['Latitude', 'Longitude']] = df[['Latitude', 'Longitude']].apply(pd.to_numeric, errors='coerce')
     df['coordinates'] = df[['Latitude', 'Longitude']].apply(Point, axis=1)
@@ -81,7 +81,7 @@ def plot_from_df(df, folium_map):
 #     return folium_map
 
 
-@st.cache_resource
+# @st.cache_resource
 def load_map():
     m = init_map()
     df = load_df()
