@@ -11,18 +11,7 @@ import pathlib
 
 code_dir = pathlib.Path(__file__).parent.resolve()
 
-st.markdown(
-    """
-    <style>
-    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
-    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
-    .viewerBadge_text__1JaDK {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 # Constants
 countries = ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Libya", "Morocco", "Mauritania", "Oman",
@@ -114,6 +103,19 @@ def load_country_data(country):
 def main():
     # Set page configuration
     st.set_page_config(layout='wide')
+
+    st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
     # Header section
     header_right, _ = st.columns((2, 1))
