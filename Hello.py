@@ -11,8 +11,8 @@ import pathlib
 
 code_dir = pathlib.Path(__file__).parent.resolve()
 
-hide_github_icon = """
-#GithubIcon {
+main_menu = """
+#MainMenu {
   visibility: hidden;
 }
 """
