@@ -11,6 +11,12 @@ import pathlib
 
 code_dir = pathlib.Path(__file__).parent.resolve()
 
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+
 # Constants
 countries = ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Libya", "Morocco", "Mauritania", "Oman",
              "Palestine", "Qatar", "Saudi Arabia", "Sudan", "Syria", "Tunisia", "UAE", "Yemen"]
