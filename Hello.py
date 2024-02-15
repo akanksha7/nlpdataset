@@ -197,8 +197,8 @@ def main():
                     submit = st.form_submit_button(label="Submit")
 
 
-                    sender = 'akanksha.singh0710@gmail.com'
-                    receiver = 'akanksha.singh0710@gmail.com'
+                    sender = 'hamdani@vt.edu'
+                    receiver = 'hamdani@vt.edu'
                     if submit:
                         if name == '' or org == '' or email =='':
                             st.error("All fields are required")
